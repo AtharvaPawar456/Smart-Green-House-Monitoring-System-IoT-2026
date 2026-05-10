@@ -1,0 +1,201 @@
+<!-- templates/predict.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto">
+
+    <!-- TOP -->
+
+    <div class="mb-10">
+
+        <div class="inline-flex items-center gap-2 border border-green-500/30 bg-green-500/10 px-4 py-2 rounded-full text-green-300 text-sm mb-5">
+            ● AI TEMPERATURE PREDICTION
+        </div>
+
+        <h1 class="text-5xl font-black">
+            Smart
+            <span class="text-green-400">
+                Temperature Forecast
+            </span>
+        </h1>
+
+        <p class="text-slate-400 text-lg mt-5 max-w-3xl leading-relaxed">
+            Predict future greenhouse temperature using
+            Random Forest Machine Learning model trained
+            on historical IoT sensor data.
+        </p>
+
+    </div>
+
+    <!-- FORM -->
+
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 glowBox">
+
+        {% if trainingMessage %}
+
+        <div class="mb-6 bg-green-500/10 border border-green-500 text-green-300 p-4 rounded-2xl">
+            {{ trainingMessage }}
+        </div>
+
+        {% endif %}
+
+        <div class="grid lg:grid-cols-2 gap-5">
+
+            <!-- TRAIN BUTTON -->
+
+            <form method="POST" action="/trainmodel">
+
+                <button
+                    type="submit"
+                    class="w-full bg-cyan-500 hover:bg-cyan-400 transition text-black font-black px-7 py-4 rounded-2xl">
+
+                    Train AI Model
+
+                </button>
+
+            </form>
+
+            <!-- PREDICT FORM -->
+
+            <form method="POST">
+
+                <div class="flex flex-col lg:flex-row gap-4">
+
+                    <select
+                        name="hours"
+                        class="flex-1 bg-slate-800 border border-slate-700 rounded-2xl p-4 outline-none">
+
+                        {% for hour in range(1, 25) %}
+
+                        <option
+                            value="{{ hour }}"
+                            {% if selectedHours == hour %}selected{% endif %}>
+
+                            {{ hour }} Hour
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <button
+                        type="submit"
+                        class="bg-green-500 hover:bg-green-400 transition text-black font-black px-7 py-4 rounded-2xl">
+
+                        Predict
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- RESULT -->
+
+    {% if predictionData %}
+
+    <div class="grid lg:grid-cols-2 gap-8 mt-10">
+
+        <!-- CURRENT -->
+
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8">
+
+            <p class="text-slate-400 text-sm">
+                CURRENT TEMPERATURE
+            </p>
+
+            <h2 class="text-6xl font-black mt-4">
+                {{ predictionData.currentTemp }}°C
+            </h2>
+
+            <div class="mt-8 space-y-3">
+
+                <div class="flex justify-between">
+                    <span class="text-slate-400">
+                        Humidity
+                    </span>
+
+                    <span>
+                        {{ predictionData.humidity }}%
+                    </span>
+                </div>
+
+                <div class="flex justify-between">
+                    <span class="text-slate-400">
+                        Soil Moisture
+                    </span>
+
+                    <span>
+                        {{ predictionData.soilMoisture }}%
+                    </span>
+                </div>
+
+                <div class="flex justify-between">
+                    <span class="text-slate-400">
+                        Rain Sensor
+                    </span>
+
+                    <span>
+                        {% if predictionData.rainValue == 1 %}
+                            RAIN
+                        {% else %}
+                            DRY
+                        {% endif %}
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PREDICTED -->
+
+        <div class="bg-green-500 text-black rounded-3xl p-8">
+
+            <p class="text-black/70 text-sm font-bold">
+                AI PREDICTED TEMPERATURE
+            </p>
+
+            <h2 class="text-7xl font-black mt-4">
+                {{ predictionData.predictedTemp }}°C
+            </h2>
+
+            <div class="mt-8">
+
+                <div class="bg-black/10 rounded-2xl p-5">
+
+                    <p class="font-bold">
+                        Forecast Summary
+                    </p>
+
+                    <p class="mt-3 leading-relaxed">
+                        The system predicts that after
+                        <strong>
+                            {{ predictionData.afterHours }} hours
+                        </strong>,
+                        the greenhouse temperature may reach
+                        <strong>
+                            {{ predictionData.predictedTemp }}°C
+                        </strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

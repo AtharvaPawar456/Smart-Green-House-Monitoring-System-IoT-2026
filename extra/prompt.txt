@@ -1,0 +1,158 @@
+give me a complete code for flask app
+
+make the complete website mobile responsive
+dont use forms.py
+
+sqlite db : systemdata.db (get its proper path using os lib)
+default devicename = "device123" 
+
+create a common base.html
+use tailwind css cdn for style 
+
+
+use given ref ui as ui style for my complete flask app
+
+
+Project Name : GreenSense 
+Scope : Smart-Green-House-Monitoring-System-IoT
+
+
+
+
+for every route check the session.username 
+if not session.uername:
+    redirect to login page 
+
+
+
+
+
+
+
+route: "/"
+render the welcome.html file using base.html template
+- here design it properly where show
+- show the latest logdata here and display the values correctly
+
+
+route: "/login"
+- if login then logout 
+- POST : get the user creds and check if correct the login and redirect to "/" 
+render the welcome.html file using base.html template
+
+route: "/register"
+- if login then logout 
+- POST : get the user creds and save it in db  and redirect to "/" 
+render the welcome.html file using base.html template
+profile details:
+- username 
+- password 
+
+route: "/logdata"
+render the rawlogview.html here display all the data 
+- mobile view : show in cards 
+- desktop view : show in table 
+
+
+route: "/notify"
+get the notify data from db and render it correctly
+render page the notification.html
+- mobile view  : show in cards 
+- desktop view : show in table 
+
+
+
+route: "/aboutus"
+render the aboutus.html add simple aboutus content 
+
+
+route: "/profile"
+get the login user data from db and render it correctly
+render the profile.html
+
+
+
+
+API ENDPOINTS:
+
+
+route: "/addlog"
+make this an GET request api 
+eg: route: /addlog?devicename=device123&peakPGA=0.3&magnitude=6.0
+add this data in table : lanedata correctly
+
+
+
+
+
+
+
+
+
+
+use sqlitedb to store the data : systemdata.db
+
+table: userdata
+    columns:
+    
+    userid : auto gen primary key 
+    username: text, default = "*"
+    password: text, default = "*"
+    status: text, default = "active" (active/inactive)
+    timestamp: auto gen timestamp 
+
+
+table: logdata
+    columns:
+        
+    logid           : auto gen primary key 
+    devicename      : text, default = "device123" 
+    tempval         : float, default = 0.0
+    humval          : float, default = 0.0
+    soilmoistureval : float, default = 0.0
+    rainval         : int, default = 0
+    timestamp: auto gen timestamp 
+
+
+table: notify
+    columns:
+        
+    nid      : auto gen primary key 
+    msg      : text, default = "*" 
+    timestamp: auto gen timestamp 
+
+
+
+
+
+
+Platform Name : GreenSense
+add burger icon for mobile ui (when click outside then close the burger side view)
+and for desktop view make aside(left) menu section 
+    list below things:
+    - GreenSense
+    - Home : display latest record on proper UI
+    - Profile : 
+    - Logs : show all the records latest at top 
+    - Aboutus : render about.html
+    - Logout 
+
+
+
+
+
+
+
+now i want to embed the verys small ml
+
+
+1st sugget me the ml algo for it and then i will select the algo for implementation 
+
+i want to predict the next temperature
+for prediction inference input : after 1, 2, 3, 4, etc hrs from current time  
+
+
+use Random Forest Regressor and give me a route and page for thie predict view 
+
+
+

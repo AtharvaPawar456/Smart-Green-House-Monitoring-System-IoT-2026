@@ -1,0 +1,82 @@
+<!-- templates/rawlogview.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-4xl font-black mb-8">
+    Sensor Logs
+</h1>
+
+<!-- MOBILE -->
+
+<div class="grid gap-5 lg:hidden">
+
+    {% for row in allLogs %}
+
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5">
+
+        <div class="space-y-2">
+
+            <p><span class="text-slate-400">Device:</span> {{ row.devicename }}</p>
+            <p><span class="text-slate-400">Temp:</span> {{ row.tempval }}</p>
+            <p><span class="text-slate-400">Humidity:</span> {{ row.humval }}</p>
+            <p><span class="text-slate-400">Soil:</span> {{ row.soilmoistureval }}</p>
+            <p><span class="text-slate-400">Rain:</span> {{ row.rainval }}</p>
+            <p><span class="text-slate-400">Time:</span> {{ row.timestamp }}</p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<!-- DESKTOP -->
+
+<div class="hidden lg:block overflow-x-auto">
+
+    <table class="w-full bg-slate-900 rounded-3xl overflow-hidden">
+
+        <thead class="bg-green-500 text-black">
+
+            <tr>
+
+                <th class="p-4 text-left">ID</th>
+                <th class="p-4 text-left">Device</th>
+                <th class="p-4 text-left">Temp</th>
+                <th class="p-4 text-left">Humidity</th>
+                <th class="p-4 text-left">Soil</th>
+                <th class="p-4 text-left">Rain</th>
+                <th class="p-4 text-left">Timestamp</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for row in allLogs %}
+
+            <tr class="border-b border-slate-800">
+
+                <td class="p-4">{{ row.logid }}</td>
+                <td class="p-4">{{ row.devicename }}</td>
+                <td class="p-4">{{ row.tempval }}</td>
+                <td class="p-4">{{ row.humval }}</td>
+                <td class="p-4">{{ row.soilmoistureval }}</td>
+                <td class="p-4">{{ row.rainval }}</td>
+                <td class="p-4">{{ row.timestamp }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

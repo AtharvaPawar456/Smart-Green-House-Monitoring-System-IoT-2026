@@ -1,0 +1,53 @@
+<!-- templates/profile.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto">
+
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8">
+
+        <h1 class="text-4xl font-black text-green-400">
+            Profile
+        </h1>
+
+        <div class="space-y-5 mt-8">
+
+            <div>
+                <p class="text-slate-400">
+                    Username
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ userData.username | title }}
+                </h2>
+            </div>
+
+            <div>
+                <p class="text-slate-400">
+                    Status
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ userData.status | upper}}
+                </h2>
+            </div>
+
+            <div>
+                <p class="text-slate-400">
+                    Created
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    {{ userData.timestamp }}
+                </h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

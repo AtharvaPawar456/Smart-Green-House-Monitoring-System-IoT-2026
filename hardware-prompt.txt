@@ -1,0 +1,21 @@
+give me a arduino code to 
+
+Note : make it a funtion block 'uploadDataApiCall'
+board : Arduino Nano 33 IoT
+
+
+logic:
+
+
+var temp = 0.0 (FLOAT)
+var hum = 0.0  (FLOAT)
+var soilmoistureval = 0 (INT)
+var rain = 0 (INT)
+
+- WIFI connection
+
+- set some random values 
+
+url : https://sahilbaikar45.pythonanywhere.com/addlog?devicename=device123&tempval={temp}&humval={hum}&soilmoistureval={soilmoistureval}&rainval={rain}
+
+GET API CALL to url

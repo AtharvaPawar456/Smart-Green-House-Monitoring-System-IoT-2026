@@ -1,0 +1,31 @@
+<!-- templates/notification.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-4xl font-black mb-8">
+    Notifications
+</h1>
+
+<div class="space-y-5">
+
+    {% for row in notifyData %}
+
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5">
+
+        <p class="text-lg">
+            {{ row.msg }}
+        </p>
+
+        <p class="text-slate-400 text-sm mt-3">
+            {{ row.timestamp }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

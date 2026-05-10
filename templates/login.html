@@ -1,0 +1,71 @@
+<!-- templates/login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-[#050816] text-white min-h-screen flex items-center justify-center p-5">
+
+    <div class="w-full max-w-md bg-slate-900 rounded-3xl border border-slate-800 p-8">
+
+        <h1 class="text-4xl font-black text-green-400">
+            GreenSense
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+            Login to continue
+        </p>
+
+        {% if errorMessage %}
+        <div class="bg-red-500/20 border border-red-500 text-red-300 p-3 rounded-xl mt-5">
+            {{ errorMessage }}
+        </div>
+        {% endif %}
+
+        <form method="POST" class="space-y-5 mt-8">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+                class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 outline-none">
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 outline-none">
+
+            <button
+                type="submit"
+                class="w-full bg-green-500 hover:bg-green-400 text-black font-bold p-4 rounded-xl transition">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <p class="text-center text-slate-400 mt-6">
+            No account?
+            <a href="/register" class="text-green-400">
+                Register
+            </a>
+        </p>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+
+
+
+Account:
+sahil : Pass@123
+
+
+Pythonanywhere:
+sahilbaikar45 : Sahil@4932
+
+
+https://sahilbaikar45.pythonanywhere.com/
+
+
+
+Api Guide:
+
+
+http://127.0.0.1:5000/addlog?devicename=device123&tempval=28.5&humval=70&soilmoistureval=55&rainval=0
+http://127.0.0.1:5000/addlog?devicename=device123&tempval=30.5&humval=68&soilmoistureval=55&rainval=0
+http://127.0.0.1:5000/addlog?devicename=device123&tempval=31.5&humval=68&soilmoistureval=55&rainval=0
+
+http://127.0.0.1:5000/addlog?devicename=device123&tempval=31.5&humval=68&soilmoistureval=55&rainval=1
+
+like this give me 100 records url  for model training
+
+
+
+
+
+
+
+
+
+
+
+
+
+Arduino Code:
+
+var temp = 0.0 (FLOAT)
+var hum = 0.0  (FLOAT)
+var soilmoistureval = 0 (INT)
+var rain = 0 (INT)
+
+- WIFI connection
+
+url : https://sahilbaikar45.pythonanywhere.com/addlog?devicename=device123&tempval={temp}&humval={hum}&soilmoistureval={soilmoistureval}&rainval={rain}
+
+GET API CALL to url

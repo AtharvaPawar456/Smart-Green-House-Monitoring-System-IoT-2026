@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Farm Monitor</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, #14532d 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #0f172a 0%, transparent 30%),
+        #020617;
+    }
+
+    .glassCard {
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white overflow-x-hidden">
+
+  <!-- NAVBAR -->
+  <nav class="w-full px-6 py-5 flex items-center justify-between">
+    <div>
+      <h1 class="text-2xl font-bold tracking-wide">
+        SmartFarm AI
+      </h1>
+    </div>
+
+    <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+      <a href="#" class="hover:text-green-400 transition">Home</a>
+      <a href="#" class="hover:text-green-400 transition">Sensors</a>
+      <a href="#" class="hover:text-green-400 transition">Analytics</a>
+      <a href="#" class="hover:text-green-400 transition">About</a>
+    </div>
+
+    <button class="bg-green-500 hover:bg-green-400 px-5 py-2 rounded-xl font-semibold transition">
+      Connect Device
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="max-w-7xl mx-auto px-6 pt-10 pb-16 grid lg:grid-cols-2 gap-10 items-center">
+
+    <!-- LEFT -->
+    <div>
+      <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 px-4 py-2 rounded-full text-green-300 text-sm mb-6">
+        🌱 IoT Based Smart Agriculture System
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-black leading-tight">
+        Monitor Your
+        <span class="text-green-400">Farm Sensors</span>
+        In Real Time
+      </h1>
+
+      <p class="mt-6 text-slate-300 text-lg leading-relaxed">
+        Intelligent environmental monitoring using
+        TMP117 temperature sensor, soil moisture analysis,
+        and rain detection with ESP-based automation.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <button class="bg-green-500 hover:bg-green-400 transition px-6 py-3 rounded-2xl font-bold">
+          View Dashboard
+        </button>
+
+        <button class="border border-slate-600 hover:border-green-400 hover:text-green-300 transition px-6 py-3 rounded-2xl font-semibold">
+          Learn More
+        </button>
+      </div>
+
+      <!-- STATS -->
+      <div class="mt-12 grid grid-cols-3 gap-4">
+        <div class="glassCard p-5 rounded-2xl">
+          <h2 class="text-3xl font-bold text-green-400">24/7</h2>
+          <p class="text-slate-400 text-sm mt-2">Live Monitoring</p>
+        </div>
+
+        <div class="glassCard p-5 rounded-2xl">
+          <h2 class="text-3xl font-bold text-cyan-400">3</h2>
+          <p class="text-slate-400 text-sm mt-2">Active Sensors</p>
+        </div>
+
+        <div class="glassCard p-5 rounded-2xl">
+          <h2 class="text-3xl font-bold text-yellow-400">99%</h2>
+          <p class="text-slate-400 text-sm mt-2">Stable Readings</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="relative">
+
+      <div class="glassCard rounded-3xl p-8 shadow-2xl">
+
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <p class="text-slate-400 text-sm">System Status</p>
+            <h2 class="text-3xl font-bold mt-1">
+              All Sensors Online
+            </h2>
+          </div>
+
+          <div class="h-4 w-4 rounded-full bg-green-400 animate-pulse"></div>
+        </div>
+
+        <div class="space-y-5">
+
+          <!-- TEMP -->
+          <div class="bg-slate-900/40 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-slate-400 text-sm">TMP117 Temperature</p>
+              <h3 class="text-2xl font-bold mt-1">26.4°C</h3>
+            </div>
+
+            <div class="text-4xl">
+              🌡️
+            </div>
+          </div>
+
+          <!-- SOIL -->
+          <div class="bg-slate-900/40 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-slate-400 text-sm">Soil Moisture</p>
+              <h3 class="text-2xl font-bold mt-1">68%</h3>
+            </div>
+
+            <div class="text-4xl">
+              🌱
+            </div>
+          </div>
+
+          <!-- RAIN -->
+          <div class="bg-slate-900/40 rounded-2xl p-5 flex items-center justify-between">
+            <div>
+              <p class="text-slate-400 text-sm">Rain Detection</p>
+              <h3 class="text-2xl font-bold mt-1">No Rain</h3>
+            </div>
+
+            <div class="text-4xl">
+              🌧️
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FLOATING EFFECT -->
+      <div class="absolute -z-10 top-10 right-10 h-72 w-72 bg-green-500/20 blur-3xl rounded-full"></div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
