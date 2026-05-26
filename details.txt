@@ -26,7 +26,7 @@ http://127.0.0.1:5000/addlog?devicename=device123&tempval=31.5&humval=68&soilmoi
 like this give me 100 records url  for model training
 
 
-
+https://sahilbaikar45.pythonanywhere.com/addlog?devicename=device123&tempval=28.5&humval=70&soilmoistureval=55&rainval=0
 
 
 

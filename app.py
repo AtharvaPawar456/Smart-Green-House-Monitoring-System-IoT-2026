@@ -14,6 +14,7 @@ import sqlite3
 import os
 from functools import wraps
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from sklearn.ensemble import RandomForestRegressor
 import numpy as np
@@ -28,6 +29,20 @@ baseDir = os.path.abspath(os.path.dirname(__file__))
 dbPath = os.path.join(baseDir, "systemdata.db")
 
 modelPath = os.path.join(baseDir, "temperatureModel.pkl")
+
+def getAustralianTimestamp():
+    """
+    Return current Australia/Sydney timestamp string.
+    returns: formatted timestamp string
+    """
+    try:
+        australiaTime = datetime.now(ZoneInfo("Australia/Sydney"))
+
+        return australiaTime.strftime("%Y-%m-%d %H:%M:%S")
+
+    except Exception as error:
+        print(f"error | australian timestamp failed | {error}")
+        return None
 
 
 def getDbConnection():
@@ -59,9 +74,10 @@ def initDatabase():
                 username TEXT DEFAULT '*',
                 password TEXT DEFAULT '*',
                 status TEXT DEFAULT 'active',
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                timestamp DATETIME DEFAULT '*'
             )
         """)
+                # timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS logdata (
@@ -71,17 +87,19 @@ def initDatabase():
                 humval REAL DEFAULT 0.0,
                 soilmoistureval REAL DEFAULT 0.0,
                 rainval INTEGER DEFAULT 0,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                timestamp DATETIME DEFAULT '*'
             )
         """)
+                # timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS notify (
                 nid INTEGER PRIMARY KEY AUTOINCREMENT,
                 msg TEXT DEFAULT '*',
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                timestamp DATETIME DEFAULT '*'
             )
         """)
+                # timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 
         connection.commit()
         connection.close()
@@ -216,13 +234,15 @@ def registerPage():
                     errorMessage="Username already exists"
                 )
 
+            curtime = getAustralianTimestamp()
             cursor.execute("""
                 INSERT INTO userdata (
                     username,
-                    password
+                    password,
+                    timestamp 
                 )
-                VALUES (?, ?)
-            """, (username, password))
+                VALUES (?, ?, ?)
+            """, (username, password, curtime))
 
             connection.commit()
             connection.close()
@@ -373,21 +393,24 @@ def addLogApi():
         connection = getDbConnection()
         cursor = connection.cursor()
 
+        curtime = getAustralianTimestamp()
         cursor.execute("""
             INSERT INTO logdata (
                 devicename,
                 tempval,
                 humval,
                 soilmoistureval,
-                rainval
+                rainval,
+                timestamp 
             )
-            VALUES (?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?)
         """, (
             deviceName,
             tempVal,
             humVal,
             soilMoistureVal,
-            rainVal
+            rainVal,
+            curtime
         ))
 
         connection.commit()
